@@ -13,5 +13,9 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io.connect('ws://localhost:8080/');
+    </script>
   </body>
 </html>
