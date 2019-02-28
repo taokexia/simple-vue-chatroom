@@ -21,9 +21,11 @@ node run dev
 ```
 ## 项目截图
 登录界面
+
 ![登录界面](./images/websocket2.JPG)
 
 聊天室
+
 ![聊天室](./images/websocket1.JPG)
 
 以下是我对项目的总结
@@ -119,7 +121,9 @@ ws.on("connection", sock => {
 
 ## MySQL 操作
 数据库结构
-![数据库结构](./images/websocket3.jpg)
+
+![数据库结构](./images/websocket3.JPG)
+
 - `id` 主键、自增
 - `username` 用户名
 - `password` 密码
