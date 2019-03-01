@@ -1,5 +1,5 @@
 # 项目介绍
-最近学习了 websocket。 打算使用 websocket 来实现一个小型的移动端聊天室，简单的实现登录、注册、发送消息等操作。巩固自己对 vue 和 node 的掌握。
+WebSocket 是流行的数据交互方式，在学习了 websocket 后，打算使用 vue + websocket + mysql 来完成一个小型的移动端聊天室，简单的实现登录、注册、发送消息等操作。进一步巩固自己对 vue 和 nodeJs 的掌握。
 
 [项目地址](https://github.com/taokexia/simple-vue-chatroom)
 
@@ -13,11 +13,11 @@
 ## 启动项目
 启动服务器
 ```
-node run serve
+npm run serve
 ```
 启动客户端
 ```
-node run dev
+npm run dev
 ```
 ## 项目截图
 登录界面

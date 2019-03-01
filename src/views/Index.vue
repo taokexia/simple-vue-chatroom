@@ -10,7 +10,7 @@
         <img class="home-body-avator" src="../assets/logo.png" />
         <div class="home-body-content">
           <span class="username">{{ message.username }}</span>
-          <span>
+          <span class="content">
             {{ message.context }}
           </span>
         </div>
@@ -63,6 +63,7 @@ export default {
       // 如果当前没有登录，则跳转到登录界面
       this.$router.push('login');
     }
+    /* eslint-disable */
     socket.on("msg_result", (code, msg) => {
       if (code) {
         this.errMsg = "消息发送失败: " + msg;
@@ -79,6 +80,7 @@ export default {
       }
     });
     // 接收发过来的消息
+    /* eslint-disable */
     socket.on("msg", (name, context) => {
       var data = {
         username: name,
@@ -96,7 +98,7 @@ export default {
         // 如果当前没有登录，则跳转到登录界面
         this.errMsg = "请先登录!";
         this.showToast = true;
-        this.$router.push('/login');
+        this.$router.push("/login");
       }
       if (this.context === "") {
         this.errMsg = "请输入发送内容";
@@ -104,6 +106,7 @@ export default {
         return;
       }
       // 发送消息
+      /* eslint-disable */
       socket.emit("msg_send", this.context);
     }
   }
@@ -141,6 +144,9 @@ export default {
           color: #999;
           font-weight: 500;
           margin-bottom: 4px;
+        }
+        .content {
+          word-break: break-word;
         }
       }
     }

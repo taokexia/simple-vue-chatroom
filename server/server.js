@@ -24,8 +24,6 @@ let clients = [];
 let ws = io.listen(httpServer);
 // 监听连接
 ws.on("connection", sock => {
-  console.log("一位用户连接....");
-  clients.push(sock);
   // 利用闭包保存当前连接的用户数据
   let cur_username = ""; // 当前登录的用户名
   let cur_userId = 0; // 当前用户 Id
@@ -101,6 +99,8 @@ ws.on("connection", sock => {
                   sock.emit("login_result", 0, "登录成功");
                   cur_username = user;
                   cur_userId = data[0].ID;
+                  console.log("用户" + user + "连接");
+                  clients.push(sock);
                 }
               }
             );
@@ -128,15 +128,18 @@ ws.on("connection", sock => {
   //离线
   sock.on("disconnect", function() {
     // 修改在线状态
-    db.query(`UPDATE user_table SET online=0 WHERE ID=${cur_userId}`, err => {
-      if (err) {
-        console.log(err);
-        console.log("数据库出错");
-      }
-      // 更新状态
-      cur_username = "";
-      cur_userId = 0;
-      clients = clients.filter(item => item !== sock);
-    });
+    // 判断是否已经登录,如果已经登录则更新用户状态
+    if (cur_username !== "") {
+      db.query(`UPDATE user_table SET online=0 WHERE ID=${cur_userId}`, err => {
+        if (err) {
+          console.log(err);
+          console.log("数据库出错");
+        }
+        // 更新状态
+        cur_username = "";
+        cur_userId = 0;
+        clients = clients.filter(item => item !== sock);
+      });
+    }
   });
 });
